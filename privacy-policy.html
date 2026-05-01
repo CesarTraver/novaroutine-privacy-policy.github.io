@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Nova Routine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --border:    #1e2230;
+      --accent:    #7c9fff;
+      --accent-dim:#3d5a99;
+      --text:      #e8eaf0;
+      --muted:     #7a80a0;
+      --tag-bg:    #181c29;
+      --green:     #4caf87;
+      --green-dim: #1a3d30;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LANG SWITCHER ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 40px;
+      background: rgba(13,15,20,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-btn.active { background: var(--accent); color: #0d0f14; }
+
+    /* ── LANGUAGE VISIBILITY ── */
+    [data-lang] { display: none; }
+
+    body.lang-en [data-lang="en"] { display: revert; }
+    body.lang-es [data-lang="es"] { display: revert; }
+
+    h1[data-lang], h2[data-lang], h3[data-lang],
+    p[data-lang], ol[data-lang], ul[data-lang], div[data-lang] { display: none; }
+
+    body.lang-en h1[data-lang="en"],
+    body.lang-en h2[data-lang="en"],
+    body.lang-en h3[data-lang="en"],
+    body.lang-en p[data-lang="en"],
+    body.lang-en ol[data-lang="en"],
+    body.lang-en ul[data-lang="en"],
+    body.lang-en div[data-lang="en"] { display: block; }
+
+    body.lang-es h1[data-lang="es"],
+    body.lang-es h2[data-lang="es"],
+    body.lang-es h3[data-lang="es"],
+    body.lang-es p[data-lang="es"],
+    body.lang-es ol[data-lang="es"],
+    body.lang-es ul[data-lang="es"],
+    body.lang-es div[data-lang="es"] { display: block; }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 72px 40px 56px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(124,159,255,0.11) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+
+    .wordmark-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .wordmark-icon svg { width: 20px; height: 20px; }
+
+    .wordmark-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
+
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .subtitle {
+      font-size: 0.875rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .meta-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .badge {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .badge strong { color: var(--accent); font-weight: 500; }
+
+    /* ── ZERO DATA HERO BANNER ── */
+    .zero-banner {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 48px auto 0;
+      padding: 0 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.6s;
+    }
+
+    .zero-banner-inner {
+      background: linear-gradient(135deg, rgba(76,175,135,0.1) 0%, rgba(76,175,135,0.04) 100%);
+      border: 1px solid rgba(76,175,135,0.35);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .zero-icon {
+      width: 48px; height: 48px;
+      background: rgba(76,175,135,0.15);
+      border: 1px solid rgba(76,175,135,0.3);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .zero-icon svg { width: 26px; height: 26px; }
+
+    .zero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .zero-body { font-size: 0.9rem; color: #9ac8b4; line-height: 1.65; }
+
+    /* ── TOC ── */
+    .toc-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 36px auto 0;
+      padding: 0 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.72s;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 32px;
+    }
+
+    .toc-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 24px;
+    }
+
+    .toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.7rem;
+      color: var(--accent-dim);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .toc a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    .toc a:hover { color: var(--accent); }
+
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+    }
+
+    section {
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.8s; }
+    section:nth-child(2) { animation-delay: 0.88s; }
+    section:nth-child(3) { animation-delay: 0.96s; }
+    section:nth-child(4) { animation-delay: 1.04s; }
+    section:nth-child(5) { animation-delay: 1.12s; }
+    section:nth-child(6) { animation-delay: 1.20s; }
+    section:nth-child(7) { animation-delay: 1.28s; }
+
+    .section-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 7px;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p { margin-bottom: 14px; color: #c4c9dc; }
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--text); font-weight: 500; }
+
+    /* ── CALLOUT VARIANTS ── */
+    .callout {
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .callout.info {
+      background: rgba(124,159,255,0.07);
+      border: 1px solid rgba(124,159,255,0.2);
+      border-left: 3px solid var(--accent);
+      color: #aab4d4;
+    }
+
+    .callout.success {
+      background: rgba(76,175,135,0.07);
+      border: 1px solid rgba(76,175,135,0.2);
+      border-left: 3px solid var(--green);
+      color: #9ac8b4;
+    }
+
+    .callout a { color: var(--accent); }
+
+    /* ── SERVICE CARDS ── */
+    .service-cards { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .service-card:hover { border-color: var(--accent-dim); }
+
+    .service-card-left { flex: 1; min-width: 0; }
+
+    .service-name { font-weight: 500; color: var(--text); font-size: 0.9rem; margin-bottom: 2px; }
+    .service-purpose { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+
+    .service-owner {
+      display: inline-block;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .service-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.78rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .service-link:hover { opacity: 1; }
+
+    /* ── PILL LIST ── */
+    .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+
+    .pill {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 13px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .contact-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 20px; height: 20px; }
+
+    .contact-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-email { color: var(--accent); font-size: 0.95rem; font-weight: 500; text-decoration: none; }
+    .contact-email:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .lang-bar { padding: 10px 20px; }
+      header { padding: 56px 24px 44px; }
+      .zero-banner, .toc-wrapper { padding: 0 24px; }
+      .zero-banner-inner { flex-direction: column; gap: 14px; }
+      .toc ol { grid-template-columns: 1fr; }
+      main { padding: 48px 24px 80px; }
+      .service-card { flex-wrap: wrap; }
+      .contact-block { flex-direction: column; text-align: center; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<!-- LANG SWITCHER -->
+<div class="lang-bar">
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn"        onclick="setLang('es')">ES</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="wordmark">
+    <div class="wordmark-icon">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="3" fill="white"/>
+        <path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.93 4.93l1.41 1.41M13.66 13.66l1.41 1.41M4.93 15.07l1.41-1.41M13.66 6.34l1.41-1.41" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="wordmark-text">Nova Routine</span>
+  </div>
+
+  <h1 data-lang="en">Privacy <em>Policy</em></h1>
+  <h1 data-lang="es">Política de <em>Privacidad</em></h1>
+
+  <p class="subtitle" data-lang="en">We don't collect your data — here's how we handle it</p>
+  <p class="subtitle" data-lang="es">No recopilamos tus datos — así es cómo los gestionamos</p>
+
+  <div class="meta-badges">
+    <div class="badge" data-lang="en">Last updated: <strong>May 2025</strong></div>
+    <div class="badge" data-lang="es">Última actualización: <strong>Mayo 2025</strong></div>
+    <div class="badge">App: <strong>Nova Routine</strong></div>
+    <div class="badge" data-lang="en">Platform: <strong>Android</strong></div>
+    <div class="badge" data-lang="es">Plataforma: <strong>Android</strong></div>
+  </div>
+</header>
+
+<!-- ZERO DATA BANNER -->
+<div class="zero-banner">
+  <div class="zero-banner-inner">
+    <div class="zero-icon">
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 3L4 7v6c0 5.25 3.85 10.15 9 11.35C18.15 23.15 22 18.25 22 13V7L13 3z" stroke="#4caf87" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 13l2.5 2.5L17 10" stroke="#4caf87" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <div class="zero-title" data-lang="en">We collect zero user data</div>
+      <div class="zero-title" data-lang="es">No recopilamos ningún dato del usuario</div>
+      <div class="zero-body" data-lang="en">Nova Routine does not collect, store, or process any personal data on our own servers. Your data stays entirely within Google's ecosystem — your Google Drive, your Google Calendar, your Google account. We never see it.</div>
+      <div class="zero-body" data-lang="es">Nova Routine no recopila, almacena ni procesa ningún dato personal en servidores propios. Tu información permanece íntegramente dentro del ecosistema de Google — tu Google Drive, tu Google Calendar, tu cuenta de Google. Nosotros no tenemos acceso a ella en ningún momento.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-wrapper">
+  <div class="toc">
+    <p class="toc-label" data-lang="en">Contents</p>
+    <p class="toc-label" data-lang="es">Contenido</p>
+    <ol data-lang="en">
+      <li><a href="#s1">Overview</a></li>
+      <li><a href="#s2">Google Drive — Backups</a></li>
+      <li><a href="#s3">Google Calendar — Sync</a></li>
+      <li><a href="#s4">Google Play Billing — Premium</a></li>
+      <li><a href="#s5">Third-party policies</a></li>
+      <li><a href="#s6">Your rights &amp; controls</a></li>
+      <li><a href="#s7">Contact</a></li>
+    </ol>
+    <ol data-lang="es">
+      <li><a href="#s1">Resumen</a></li>
+      <li><a href="#s2">Google Drive — Backups</a></li>
+      <li><a href="#s3">Google Calendar — Sincronización</a></li>
+      <li><a href="#s4">Google Play Billing — Premium</a></li>
+      <li><a href="#s5">Políticas de terceros</a></li>
+      <li><a href="#s6">Tus derechos y controles</a></li>
+      <li><a href="#s7">Contacto</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- 01 Overview -->
+  <section id="s1">
+    <p class="section-num">01</p>
+    <h2 data-lang="en">Overview</h2>
+    <h2 data-lang="es">Resumen</h2>
+
+    <p data-lang="en">
+      <strong>Nova Routine</strong> is a personal routine and habit tracking app. It operates entirely on your device and uses three Google services — Google Drive, Google Calendar, and Google Play Billing — to provide backup, calendar synchronization, and premium purchase management respectively.
+    </p>
+    <p data-lang="es">
+      <strong>Nova Routine</strong> es una aplicación de seguimiento de rutinas y hábitos personales. Funciona íntegramente en tu dispositivo y utiliza tres servicios de Google — Google Drive, Google Calendar y Google Play Billing — para gestionar copias de seguridad, sincronización de calendario y compras premium respectivamente.
+    </p>
+
+    <div class="callout success" data-lang="en">
+      <strong>The developer (zorcedev) has no access to your personal data at any time.</strong> All information you enter into Nova Routine stays on your device or within your own Google account. We operate no backend servers that store or process your data.
+    </div>
+    <div class="callout success" data-lang="es">
+      <strong>El desarrollador (zorcedev) no tiene acceso a tus datos personales en ningún momento.</strong> Toda la información que introduces en Nova Routine permanece en tu dispositivo o dentro de tu propia cuenta de Google. No operamos ningún servidor propio que almacene o procese tus datos.
+    </div>
+  </section>
+
+  <!-- 02 Drive -->
+  <section id="s2">
+    <p class="section-num">02</p>
+    <h2 data-lang="en">Google Drive — Backups</h2>
+    <h2 data-lang="es">Google Drive — Copias de seguridad</h2>
+
+    <p data-lang="en">
+      Nova Routine can optionally back up your routines and activities to <strong>your personal Google Drive</strong>. This feature is entirely opt-in and controlled by you.
+    </p>
+    <p data-lang="es">
+      Nova Routine puede realizar copias de seguridad opcionales de tus rutinas y actividades en <strong>tu Google Drive personal</strong>. Esta función es completamente opcional y está controlada por ti.
+    </p>
+
+    <div class="callout info" data-lang="en">
+      Backup files are written directly to your Google Drive account. Nova Routine only requests the minimum permission necessary to write and read its own backup files — it cannot access any other files in your Drive. The developer never receives, sees, or stores this data.
+    </div>
+    <div class="callout info" data-lang="es">
+      Los archivos de copia de seguridad se escriben directamente en tu cuenta de Google Drive. Nova Routine solo solicita el permiso mínimo necesario para escribir y leer sus propios archivos de backup — no puede acceder a ningún otro archivo de tu Drive. El desarrollador nunca recibe, ve ni almacena estos datos.
+    </div>
+
+    <p data-lang="en">You can revoke Drive access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color:var(--accent)">Google account permissions</a>.</p>
+    <p data-lang="es">Puedes revocar el acceso a Drive en cualquier momento desde los <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color:var(--accent)">permisos de tu cuenta de Google</a>.</p>
+  </section>
+
+  <!-- 03 Calendar -->
+  <section id="s3">
+    <p class="section-num">03</p>
+    <h2 data-lang="en">Google Calendar — Event sync</h2>
+    <h2 data-lang="es">Google Calendar — Sincronización de eventos</h2>
+
+    <p data-lang="en">
+      Nova Routine can optionally synchronize with <strong>your Google Calendar</strong> to display your existing events alongside your routines, or to add reminders to your calendar. This feature is entirely opt-in.
+    </p>
+    <p data-lang="es">
+      Nova Routine puede sincronizarse opcionalmente con <strong>tu Google Calendar</strong> para mostrar tus eventos existentes junto a tus rutinas, o para añadir recordatorios a tu calendario. Esta función es completamente opcional.
+    </p>
+
+    <div class="callout info" data-lang="en">
+      Calendar data is read and written directly between your device and your Google Calendar account. Nova Routine only accesses the calendars you explicitly select. The developer never receives, sees, or stores your calendar events.
+    </div>
+    <div class="callout info" data-lang="es">
+      Los datos del calendario se leen y escriben directamente entre tu dispositivo y tu cuenta de Google Calendar. Nova Routine solo accede a los calendarios que tú selecciones explícitamente. El desarrollador nunca recibe, ve ni almacena tus eventos del calendario.
+    </div>
+
+    <p data-lang="en">You can revoke Calendar access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color:var(--accent)">Google account permissions</a>.</p>
+    <p data-lang="es">Puedes revocar el acceso al calendario en cualquier momento desde los <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color:var(--accent)">permisos de tu cuenta de Google</a>.</p>
+  </section>
+
+  <!-- 04 Billing -->
+  <section id="s4">
+    <p class="section-num">04</p>
+    <h2 data-lang="en">Google Play Billing — Premium</h2>
+    <h2 data-lang="es">Google Play Billing — Premium</h2>
+
+    <p data-lang="en">
+      Nova Routine offers optional premium features purchased through <strong>Google Play Billing</strong>. All payment processing is handled exclusively by Google.
+    </p>
+    <p data-lang="es">
+      Nova Routine ofrece funciones premium opcionales adquiridas a través de <strong>Google Play Billing</strong>. Todo el procesamiento de pagos es gestionado exclusivamente por Google.
+    </p>
+
+    <div class="callout info" data-lang="en">
+      We only receive a confirmation token from Google indicating whether a purchase is active, expired, or cancelled. We have no access to your payment method, credit card number, billing address, or any other financial information.
+    </div>
+    <div class="callout info" data-lang="es">
+      Solo recibimos un token de confirmación de Google que indica si una compra está activa, expirada o cancelada. No tenemos acceso a tu método de pago, número de tarjeta, dirección de facturación ni ningún otro dato financiero.
+    </div>
+
+    <p data-lang="en">Subscriptions and purchases are managed directly in the <strong>Google Play Store</strong> on your device.</p>
+    <p data-lang="es">Las suscripciones y compras se gestionan directamente en la <strong>Google Play Store</strong> en tu dispositivo.</p>
+  </section>
+
+  <!-- 05 Third parties -->
+  <section id="s5">
+    <p class="section-num">05</p>
+    <h2 data-lang="en">Third-party services</h2>
+    <h2 data-lang="es">Servicios de terceros</h2>
+
+    <p data-lang="en">Nova Routine relies on the following Google services. Each is governed by Google's own privacy policies, which we encourage you to review:</p>
+    <p data-lang="es">Nova Routine utiliza los siguientes servicios de Google. Cada uno está regulado por las políticas de privacidad propias de Google, que te recomendamos revisar:</p>
+
+    <div class="service-cards">
+      <div class="service-card">
+        <div class="service-card-left">
+          <div class="service-name">Google Drive API</div>
+          <div class="service-purpose" data-lang="en">Optional backup of your routines to your personal Drive storage.</div>
+          <div class="service-purpose" data-lang="es">Copia de seguridad opcional de tus rutinas en tu almacenamiento personal de Drive.</div>
+        </div>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="en">Policy →</a>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="es">Política →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-card-left">
+          <div class="service-name">Google Calendar API</div>
+          <div class="service-purpose" data-lang="en">Optional sync of your calendar events with your routines.</div>
+          <div class="service-purpose" data-lang="es">Sincronización opcional de tus eventos de calendario con tus rutinas.</div>
+        </div>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="en">Policy →</a>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="es">Política →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-card-left">
+          <div class="service-name">Google Play Billing</div>
+          <div class="service-purpose" data-lang="en">Secure purchase and subscription management via Google Play.</div>
+          <div class="service-purpose" data-lang="es">Gestión segura de compras y suscripciones a través de Google Play.</div>
+        </div>
+        <a class="service-link" href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener" data-lang="en">Terms →</a>
+        <a class="service-link" href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener" data-lang="es">Términos →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-card-left">
+          <div class="service-name">Google Play Services</div>
+          <div class="service-purpose" data-lang="en">Core Android platform services required for the app to run.</div>
+          <div class="service-purpose" data-lang="es">Servicios base de la plataforma Android necesarios para el funcionamiento de la app.</div>
+        </div>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="en">Policy →</a>
+        <a class="service-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-lang="es">Política →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Rights -->
+  <section id="s6">
+    <p class="section-num">06</p>
+    <h2 data-lang="en">Your rights &amp; controls</h2>
+    <h2 data-lang="es">Tus derechos y controles</h2>
+
+    <p data-lang="en">Since we do not store any of your data, you retain full control over it at all times through your own Google account and device settings:</p>
+    <p data-lang="es">Como no almacenamos ninguno de tus datos, mantienes el control total sobre ellos en todo momento a través de tu propia cuenta de Google y la configuración de tu dispositivo:</p>
+
+    <div class="pill-list" data-lang="en">
+      <span class="pill">Delete backup files from your Drive</span>
+      <span class="pill">Revoke Drive access</span>
+      <span class="pill">Revoke Calendar access</span>
+      <span class="pill">Cancel Premium via Google Play</span>
+      <span class="pill">Uninstall the app to remove all local data</span>
+    </div>
+    <div class="pill-list" data-lang="es">
+      <span class="pill">Eliminar archivos de backup desde tu Drive</span>
+      <span class="pill">Revocar acceso a Drive</span>
+      <span class="pill">Revocar acceso a Calendar</span>
+      <span class="pill">Cancelar Premium desde Google Play</span>
+      <span class="pill">Desinstalar la app para eliminar todos los datos locales</span>
+    </div>
+
+    <div class="callout success" data-lang="en">
+      To revoke any Google permission granted to Nova Routine, visit <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a> and remove the app. This immediately cuts off its access to your Drive and Calendar.
+    </div>
+    <div class="callout success" data-lang="es">
+      Para revocar cualquier permiso de Google concedido a Nova Routine, visita <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a> y elimina la app. Esto corta inmediatamente su acceso a tu Drive y Calendar.
+    </div>
+  </section>
+
+  <!-- 07 Contact -->
+  <section id="s7">
+    <p class="section-num">07</p>
+    <h2 data-lang="en">Contact</h2>
+    <h2 data-lang="es">Contacto</h2>
+
+    <p data-lang="en">If you have any questions about this Privacy Policy, you can reach us at:</p>
+    <p data-lang="es">Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos en:</p>
+
+    <div class="contact-block">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,6 12,13 2,6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="contact-label" data-lang="en">Support email</p>
+        <p class="contact-label" data-lang="es">Correo de soporte</p>
+        <a class="contact-email" href="mailto:zorcedev@gmail.com">zorcedev@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p data-lang="en">© 2025 Nova Routine · All rights reserved · <a href="mailto:zorcedev@gmail.com">zorcedev@gmail.com</a></p>
+  <p data-lang="es">© 2025 Nova Routine · Todos los derechos reservados · <a href="mailto:zorcedev@gmail.com">zorcedev@gmail.com</a></p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+    });
+    document.title = lang === 'es'
+      ? 'Política de Privacidad — Nova Routine'
+      : 'Privacy Policy — Nova Routine';
+  }
+</script>
+
+</body>
+</html>
